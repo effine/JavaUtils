@@ -70,7 +70,7 @@ public class MailUtils {
 		
 		
 		// 到服务器验证发送的用户名和密码是否正确
-		Email_Autherticatorbean myEmailAuther = new Email_Autherticatorbean(
+		AutherticatorBean myEmailAuther = new AutherticatorBean(
 				MailConstants.SENDER_USERNAME, MailConstants.SENDER_PASSWD);
 		// 设置邮件会话
 		Session mailSession = javax.mail.Session.getInstance(props,
