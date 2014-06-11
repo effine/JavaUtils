@@ -15,33 +15,14 @@ public class MD5Utils {
 
 	/* 全局数组 */
 	private final static String[] strDigits = { "0", "1", "2", "3", "4", "5",
-			"6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
-
-	/* 返回形式为数字跟字符串 */
-	private static String byteToArrayString(byte b) {
-		int temp = b;
-		if (temp < 0) {
-			temp += 256;
-		}
-		int D1 = temp / 16;
-		int D2 = temp % 16;
-		return strDigits[D1] + strDigits[D2];
-	}
-
-	/* 返回形式只为数字 */
-	private static String byteToNum(byte b) {
-		int temp = b;
-		if (temp < 0) {
-			temp += 256;
-		}
-		return String.valueOf(temp);
-	}
+			"6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
 
 	/* 转换字节数组为16进制字串 */
 	private static String byteToString(byte[] b) {
 		StringBuffer strBuffer = new StringBuffer();
 		for (int i = 0; i < b.length; i++) {
-			strBuffer.append(byteToArrayString(b[i]));
+			strBuffer.append(strDigits[(b[i] & 0xf0) >>> 4]);
+			strBuffer.append(strDigits[b[i] & 0x0f]);
 		}
 		return strBuffer.toString();
 	}
@@ -50,7 +31,9 @@ public class MD5Utils {
 		String result = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
-			result = byteToString(md.digest(str.getBytes()));
+			byte[] arr = str.getBytes();
+			md.update(arr);
+			result = byteToString(md.digest(arr));
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -58,6 +41,6 @@ public class MD5Utils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getMD5Code("张亚"));
+		System.out.println(getMD5Code("密码"));
 	}
 }
