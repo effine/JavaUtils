@@ -41,6 +41,6 @@ public class MD5Utils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getMD5Code("密码"));
+		System.out.println(getMD5Code("password"));
 	}
 }
