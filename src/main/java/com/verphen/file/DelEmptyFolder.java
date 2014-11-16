@@ -29,7 +29,7 @@ public class DelEmptyFolder {
 	 * 采用递归思想，级联删除空文件夹
 	 * 
 	 * @param file
-	 * @return
+	 * @return Boolean
 	 */
 	public static boolean del(File file) {
 		if (file.isDirectory()) {
