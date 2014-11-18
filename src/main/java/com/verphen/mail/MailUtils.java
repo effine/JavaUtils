@@ -35,7 +35,7 @@ public class MailUtils {
 			e.printStackTrace();
 		}
 	}
-
+  
 	/**
 	 * 发送邮件方法
 	 * 
